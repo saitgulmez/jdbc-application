@@ -1,0 +1,61 @@
+Eclipse te Maven ile proje oluşturma yöntemiyle gittim. "Fake" kütüphanesini sadece burada kullanabiliyordum. İlk projede denedim fakat başarılı olamadım. SQL kodlarını .sql uzantılı bir file yazıp terminalde manual olarak elde ettiğim sonuçları da "Task" klasörüne ekledim.
+
+1) Musteri Tablosu 
+musteriId: Range olarak 1 - 50 olarak tanımladım.
+ad       : Eclipse, Java da random name, surname generate etmek için Fake kütüphanesini ekledim.
+sehir    : "İstanbul", "İzmir", "Ankara" ve "Sivas" olarak tanımladım.
+her müşteri için random olarak generate edilip assignment yapılıyor.
+
+
+2) Sepet Tablosu
+sepetId   : Range 100 - 150 arasında fakat düzenli bir şekilde artıyor.
+musteriId : Sepet e random olarak müsteriId lerini set ediyorum. 
+tarih     : Range için henüz bakamadım. Tüm tarihler aynı ve şu an içinde bulunduğumuz güncel günü veriyor.
+
+3) Urun Tablosu
+urunId : Range 10000 - 10049 arasında değişiyor, düzenli olarak. 
+sepetId: sepetId ler random olarak store ediliyor. Aynı sepetId ler farklı Urun satırında mevcut olabiliyor.
+tutar : 1.0 - 100.0 arasında bir değer random olarak dönüyor.
+
+
+STEPS :
+
+1) Eclipse ortamında projeyi yani "Task" adlı projeyi import ediyoruz.
+2) Terminal yardımıyla
+
+#Login to MySQL root shell:
+$ sudo mysql -u root -p
+
+#Execute below queries:
+	#step 1
+use mysql;
+	#step 2
+update user set plugin='mysql_native_password' where user='root';
+flush privileges; 
+	#step 3
+quit;
+
+3) Terminal yardımıyla mysql da "mydb" adında bir database oluşturuyoruz.  
+
+4) mysql-connector-java-8.0.19.jar indirip proje ekliyoruz
+ şu linkte görseller yardımıyla daha rahat anlaşılıyor nasıl yapılacağı ile ilgili. https://ibytecode.com/blog/jdbc-mysql-connection-tutorial/ 
+5) MySql - Database - Java etkileşimi daha rahat öğrenmek için faydalı bir kaynak : http://www.science.smith.edu/dftwiki/index.php/Tutorial:_Accessing_a_MySql_database_in_Java_(Eclipse)
+
+6) Test.java  run ettiğimizde database de "Musteri", "Sepet" ve "Urun" adlı 3 tane tablo oluşturuyor ve buraya random generate edilmiş dataları unique olarak store ediyor. 
+Task/src/output/Output.txt  da resultları görebiliriz.
+
+projede mevcut olan private bilgiler database bağlanmak için.
+user = "root";
+password = "ceng1234";
+host = "localhost";
+database = "mydb";
+#terminalden
+mysql -u root -p
+# password
+
+
+
+// Task2
+Task2 is not related Task1. It is implementation of word counting .
+- implement Hadoop WordCount
+(Hadoop MapReduce)

@@ -1,0 +1,24 @@
+Musteri
+	private int musteriId;
+	private String ad;
+	private String sehir;
+
+Sepet
+	
+	private int sepetId;
+	private int musteriId;
+	private String tarih;
+
+Urun
+	private int urunId;
+	private double tutar;
+	private String aciklama;
+	private int sepetId;
+
+M --> S
+U --> S
+
+M --> S --> U
+
+
+Toplam Tutar ?
